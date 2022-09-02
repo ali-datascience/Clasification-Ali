@@ -18,6 +18,29 @@ Client membutuhkan sebuah alat machine learning untuk perusahaan bisnis property
 -  Melakukan EDA dan Visualisai untuk mencari tau karakteristik customer
 -  Membuat Logistic Regression
 
+## Data Understanding
+Paragraf awal bagian ini menjelaskan informasi mengenai data yang Anda gunakan dalam proyek. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: UCI Machine Learning Repository.
+
+Selanjutnya uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:
+
+Variabel-variabel pada Restaurant  dataset adalah sebagai berikut:
+accepts : merupakan jenis pembayaran yang diterima pada restoran tertentu.
+cuisine : merupakan jenis masakan yang disajikan pada restoran.
+dst
+
+## Modeling
+Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Anda perlu menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan.
+
+
+## Evaluation
+Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
+
+Sebagai contoh, Anda memiih kasus klasifikasi dan menggunakan metrik akurasi, precision, recall, dan F1 score. Jelaskan mengenai beberapa hal berikut:
+
+Penjelasan mengenai metrik yang digunakan
+Menjelaskan hasil proyek berdasarkan metrik evaluasi
+Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
+
 
   
  

@@ -70,18 +70,28 @@ Dataset ini berisi data pemesanan sebuah hotel di daerah kota dan sebuah hotel d
 - reservation_status_date: Date at which the last status was set. This variable can be used in conjunction with the ReservationStatus to understand when was the booking canceled or when did the customer checked-out of the hotel
 
 ## Modeling
-Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Anda perlu menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan.
+Menggunakan Logistic Regression Dg Akurasi sekitar 76%. Perbindingan dengan model lain namun akurasi maximal berada di angka yang sama
+Sudah dilakukan Tunning namun akurasi tidak terlalu signifikan
+
+LR = LogisticRegression()
+LR.fit(X_train, y_train)
+
+y_pred = LR.predict(X_test)
+logreg_test = pd.merge(X_test, y_test, left_index=True, right_index=True, how='outer')
+logreg_test['prediction'] = y_pred
+logreg_test
+
+
+Feature yang ditambahkan adalah :
+ "pembatalan","tipe_deposit","waktu_tunggu","negara","pembatalan_sebelumnya","days_in_waiting_list","minggu_kedatangan", "company","tamu_berulang","tipe_hotel" 
+![image](https://user-images.githubusercontent.com/84785795/188253778-0869a0a8-9c55-4f18-834b-2603d1ed6ecc.png)
+
 
 
 ## Evaluation
-Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
+Matrix evaluasi menggunakan pengukuran clasification report dan didapatkan akurasi model sekitar 76 persen dengan presisi 88 dan recal 40, sehingga asumsi model tersebut cukup baik digunakan sebagai model prediksi
 
-Sebagai contoh, Anda memiih kasus klasifikasi dan menggunakan metrik akurasi, precision, recall, dan F1 score. Jelaskan mengenai beberapa hal berikut:
-
-Penjelasan mengenai metrik yang digunakan
-Menjelaskan hasil proyek berdasarkan metrik evaluasi
-Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
-
+print(metrics.classification_report(y_test, y_pred))
 
   
  

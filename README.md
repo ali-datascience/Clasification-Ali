@@ -119,13 +119,17 @@ Pada tahap modeling dipilih dilipih beberapa fiture yang dirasa memiliki korelas
 
 Dari hasil model tersebut mendapatkan akurasi sebesar 75%
 
-![image](https://user-images.githubusercontent.com/84785795/188298377-e0280e22-8d73-4839-8b50-80de02402259.png)
+![image](https://user-images.githubusercontent.com/84785795/188315517-2597a791-67ee-4ff9-b7b2-f1f05f257af4.png)
 
-![image](https://user-images.githubusercontent.com/84785795/188298396-03726e8c-777e-409a-96c0-d8608bb42254.png)
+![image](https://user-images.githubusercontent.com/84785795/188315529-7bd60bf8-ad52-4eb5-807c-3253247caedf.png)
+
+![image](https://user-images.githubusercontent.com/84785795/188315550-78f474f4-27fc-4270-a1a9-be22e186b8e5.png)
+
 
 Recall msekitar 39% dg presisi 91% dan akurasi 76%, 
 
-![image](https://user-images.githubusercontent.com/84785795/188298416-6b2ac635-2108-4aff-8039-4aea19ac7d45.png
+![image](https://user-images.githubusercontent.com/84785795/188315581-04fb28fb-68b5-4f00-bcea-158b6191727c.png)
+
 
 Dari test AUC dapat dilihat ada di angka 0.76 ini menunjukan model kita cukup baik, namun kita akan coba denga Tunning Model untuk mendapatkan akurasi yang maksimal
 
@@ -145,10 +149,8 @@ Akurasi model berada di sekitar 75%
 Matrix evaluasi menggunakan pengukuran clasification report dan didapatkan akurasi model sekitar 76 persen dengan presisi 88 dan recal 40, sehingga asumsi model tersebut cukup baik digunakan sebagai model prediksi, evaluasi juga dilakuakan dengan membadingkan akurasi dari model lain namun didapatkan akurasi terbaik menggunakan logisti resgression meskipun secara angka hampir sama
 
 
-![image](https://user-images.githubusercontent.com/84785795/188298678-780f51c1-f55a-4f0b-9231-7691ac8bf257.png)
+![image](https://user-images.githubusercontent.com/84785795/188315607-1a5c1c25-c130-4bf1-8827-ca9cc43c80ce.png)
 
-
-![image](https://user-images.githubusercontent.com/84785795/188298732-b4143eab-b0d9-47d7-81aa-b255bf3ed152.png)
 
 
 Tidak Terjadi peningkatan score ketika dilakukan tuning parameter, artinya dengan feature yang ada didapat score maksimal 76% apabila kita menggunakan logistik regresion. Kita akan menambahkan feature lain yaitu company dengan pertimbangan akan mempengaruhi karena bisa jadi customer ada yang memesan melalui biro jasa ataupun pesan langsung tanpa biro jasa, wich is proses cancel order akan lebih mudah dilakukan apabila customer melakukan pesanan secara langsung. Kita juga akan menambahkan feature tamu berulang, feature ini penting mengingat bisa jadi angka cancel order untuk tamu berulang/yang sudah langganan sangat kecil kemungkinan mereka melakukan batal pesanan. Feature lain yang akan ditambahkan yaitu market_segment,tipe_hotel,tipe_customer,tipe_ruang dan tipe_kamar_ditentukan karena di EDA sendiri cenderung mempengaruhi status order customer

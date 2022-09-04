@@ -86,7 +86,7 @@ Sebelum membuat modeling dilakukan data preparation sebagai berikut,
 
 ![image](https://user-images.githubusercontent.com/84785795/188298118-ab84e5f2-b1f8-43c1-91e6-e5a0ed6fa16a.png)
 
-- **Berdasarkan matrix didapat beberapa variabel yang memiliki korelasi besar yaitu :**
+**Berdasarkan matrix didapat beberapa variabel yang memiliki korelasi besar yaitu :**
 
 - anak_anak 0.005048
 - minggu_kedatangan 0.008148

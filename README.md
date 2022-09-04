@@ -5,18 +5,18 @@
 Domain proyek yang dipilih dalam proyek machine learning ini adalah mengenai Case Clasification.
 
 # Business Understanding
-Client membutuhkan sebuah alat machine learning untuk perusahaan bisnis property dan booking hotel. Perusahaan hotel ingin mengoptimalkan customer yang melakukan pembatalan secara tiba-tiba, sehingga status website pemesanan online dapat diperbaiki dan mengetahui pelanggan yang akan melakukan pembatalan.
+Client membutuhkan sebuah alat machine learning untuk perusahaan bisnis property dan booking hotel. Perusahaan hotel ingin mengoptimalkan customer yang melakukan pembatalan secara tiba-tiba, sehingga status website pemesanan online dapat diperbaiki dan mengetahui karakteristik pelanggan yang  melakukan pembatalan.
 
 ## Problem Statements
-- Perusahaan ingin mengetahui bagaimana profiling dari customer hotel mitranya, dari negara mana, bagaimana karakteristik dalam pemesanan hotel dilihat berdasarkan resort hotel dan city hotel
-- Perusahaan ingin fokus pada karakteristik yang melakukan pembatalan sebelumnya. Hal ini ingin mengoptimalkan dengan menerapkan kebijakan baru agar tidak terjadi pembatalan yang berlebih, karena dapat merugikan perusahaan.
-- Membuat mechine learning dengan feature-feature dan berikan kebijakan berdasarkan model mechine learning yang kamu buat untuk mengoptimalkan website pemesanan online hotel
+- Bagaimana profiling dari customer hotel mitranya, dari negara mana, bagaimana karakteristik dalam pemesanan hotel dilihat berdasarkan resort hotel dan city hotel
+- Bagaimana karakteristik yang melakukan pembatalan sebelumnya. Hal ini ingin mengoptimalkan dengan menerapkan kebijakan baru agar tidak terjadi pembatalan yang berlebih, karena dapat merugikan perusahaan.
+- Ingin memprediksi kemungkinan customer melakukan pembatalan atau tidak
 
-## Solusi
+## Goals
 
-- Untuk mencari tau profiling customer maka dilakukan filter customer yang benar2 melakukan pemesanan (tidak melakukan pembatalan)
--  Melakukan EDA dan Visualisai untuk mencari tau karakteristik customer
--  Membuat Logistic Regression
+-  Mengerahui profiling dari customer berdasarakan tipe hotel (City dan resort hotel)
+-  Mengetahui karakteristik dari customer yang melakukan pembatalan
+-  Membuat Mechine learning untuk memprediksi kemungkinan customer melakukan pembatalan atau tidak
 
 ## Data Understanding
 Dataset ini berisi data pemesanan sebuah hotel di daerah kota dan sebuah hotel di daerah resor; data yang dikoleksi seperti kapan pemesanan dilakukan, lama tinggal tamu di hotel, banyak tamu dewasa, banyak tamu anak-anak, banyak tamu bayi, jumlah ruang parkir tersedia, dan 25 fitur lainnya. Dataset ini berasal dari sebuah artikel yang diterbitkan oleh ScienceDirect. https://rpubs.com/gustavothiodorus/visualisasi_pemesanan_kamar_hotel
@@ -68,6 +68,12 @@ Dataset ini berisi data pemesanan sebuah hotel di daerah kota dan sebuah hotel d
 - Check-Out – customer has checked in but already departed
 - No-Show – customer did not check-in and did inform the hotel of the reason why
 - reservation_status_date: Date at which the last status was set. This variable can be used in conjunction with the ReservationStatus to understand when was the booking canceled or when did the customer checked-out of the hotel
+
+
+##Data Preparation
+Sebelum membuat modeling dilakukan data preparation sebagai berikut
+
+###Handling Null Value
 
 ## Modeling
 Menggunakan Logistic Regression Dg Akurasi sekitar 76%. Perbindingan dengan model lain namun akurasi maximal berada di angka yang sama

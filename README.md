@@ -115,7 +115,7 @@ df['adr'] = df['adr'].astype(int)
 df['company'] = df['company'].astype(float)
 
 - **Lakukan konversi nama bulan kedalam numeric**
--
+
 df['bulan_kedatangan_cat'] = df['bulan_kedatangan']
 df['bulan_kedatangan_cat'].replace(to_replace='January', value=1, inplace=True)
 df['bulan_kedatangan_cat'].replace(to_replace='February', value=2, inplace=True)
@@ -131,6 +131,7 @@ df['bulan_kedatangan_cat'].replace(to_replace='November', value=11, inplace=True
 df['bulan_kedatangan_cat'].replace(to_replace='December', value=12, inplace=True)
 
 - **Kemudian cek korelasi untuk menentukan fiture yang akan digunakan **
+
 sns.heatmap(df.corr(),linewidth=.5,annot=True,cmap="RdYlGn")
 fig = plt.gcf()
 fig.set_size_inches(15,8)
@@ -172,17 +173,19 @@ Pada tahap modeling dipilih dilipih beberapa fiture yang dirasa memiliki korelas
 features = df[["pembatalan_cat","tipe_deposit_cat","waktu_tunggu","negara_cat","pembatalan_sebelumnya","days_in_waiting_list","minggu_kedatangan"]]
 
 - **Dilakukan scaling data **
+
 scaler = MinMaxScaler()
 scaled = scaler.fit_transform(features)
 data_scaled = pd.DataFrame(scaled,columns=['pembatalan_cat','tipe_deposit_cat','waktu_tunggu','negara_cat','pembatalan_sebelumnya','days_in_waiting_list','minggu_kedatangan'])
 data_scaled
 
 - **Membagi data train dan test sebanyak 20 dan 80 persen**
+
 X = data_scaled.drop('pembatalan_cat', axis=1)
 y = data_scaled['pembatalan_cat']
 X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.2, random_state=0)
 
-- Memilih Model Logistic Regresion
+- **Memilih Model Logistic Regresion**
 
 LR = LogisticRegression()
 LR.fit(X_train, y_train)
@@ -199,6 +202,7 @@ Dari hasil model tersebut mendapatkab akurasi sebesar 75%
 ![image](https://user-images.githubusercontent.com/84785795/188298396-03726e8c-777e-409a-96c0-d8608bb42254.png)
 
 Recall msekitar 39% dg presisi 91% dan akurasi 76%, 
+
 ![image](https://user-images.githubusercontent.com/84785795/188298416-6b2ac635-2108-4aff-8039-4aea19ac7d45.png
 
 Dari test AUC dapat dilihat ada di angka 0.76 ini menunjukan model kita cukup baik, namun kita akan coba denga Tunning Model untuk mendapatkan akurasi yang maksimal
@@ -218,9 +222,12 @@ Akurasi model berada di sekitar 75%
 ## Evaluation
 Matrix evaluasi menggunakan pengukuran clasification report dan didapatkan akurasi model sekitar 76 persen dengan presisi 88 dan recal 40, sehingga asumsi model tersebut cukup baik digunakan sebagai model prediksi, evaluasi juga dilakuakan dengan membadingkan akurasi dari model lain namun didapatkan akurasi terbaik menggunakan logisti resgression meskipun secara angka hampir sama
 
+
 ![image](https://user-images.githubusercontent.com/84785795/188298678-780f51c1-f55a-4f0b-9231-7691ac8bf257.png)
 
+
 ![image](https://user-images.githubusercontent.com/84785795/188298732-b4143eab-b0d9-47d7-81aa-b255bf3ed152.png)
+
 
 Tidak Terjadi peningkatan score ketika dilakukan tuning parameter, artinya dengan feature yang ada didapat score maksimal 76% apabila kita menggunakan logistik regresion. Kita akan menambahkan feature lain yaitu company dengan pertimbangan akan mempengaruhi karena bisa jadi customer ada yang memesan melalui biro jasa ataupun pesan langsung tanpa biro jasa, wich is proses cancel order akan lebih mudah dilakukan apabila customer melakukan pesanan secara langsung. Kita juga akan menambahkan feature tamu berulang, feature ini penting mengingat bisa jadi angka cancel order untuk tamu berulang/yang sudah langganan sangat kecil kemungkinan mereka melakukan batal pesanan. Feature lain yang akan ditambahkan yaitu market_segment,tipe_hotel,tipe_customer,tipe_ruang dan tipe_kamar_ditentukan karena di EDA sendiri cenderung mempengaruhi status order customer
 
@@ -232,4 +239,6 @@ perbedaanya hanya beda satu angka diblakang koma, kita ambil kesimpulan secara a
 
   
  
+## KESIMPULAN/SARAN
 
+Perusahaan perlu membuat promosi untuk resort hotel karena presentasi order yang lumayan kecil jika dibandingkan dengan city hotel, kemudian matrix yang mempengaruhi angka pembatalan pemesanan juga perlu di reduse seperti misalkan mengharuskan untuk deposite terlebih dahulu untuk pemesanan hotel dan perlu melakukan mekanisme promosi pada negara-negara dengan angka order terkecil, mungkin bisa mengadayakan upaya promosi kerjasama dengan destinasi wisata setempat untuk melakukan upaya marketing campaign atau promosi lainya dengan target negara-negara tersebut. Bisa juga mengadakan sistem loyalti point/rewards ataupun referal bagi pengunjung setia hotel.

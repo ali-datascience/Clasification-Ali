@@ -71,94 +71,18 @@ Dataset ini berisi data pemesanan sebuah hotel di daerah kota dan sebuah hotel d
 
 
 ## Data Preparation
-Sebelum membuat modeling dilakukan data preparation sebagai berikut
+Sebelum membuat modeling dilakukan data preparation sebagai berikut,
 
-### Handling Null Value
- - Cek apakah data mengandung null value
-
-df.isnull().sum()
- 
-- Dilakukan dropna pada kolom anak2
-
-df.dropna(subset=['anak_anak'],inplace=True)
-
-- Pada company diisi 0 jika customer tidak memiliki company, bisa jadi customer melakukan pembelian mandiri
-
-df["company"].fillna("0",inplace=True)
-
-- Dilakukan Dropna juga pada colom negara
-
-df.dropna(subset=['negara'],inplace=True)
-
-### Change Data Kategori dan Cek Korelasi Data
-- Ubah kedalam bentuk numerik
-- Convertin the predictor variable in a binary numeric variable
-
-df['pembatalan_cat'] = df['pembatalan']
-
-df['pembatalan_cat'].replace(to_replace='Ya', value=1, inplace=True)
-
-df['pembatalan_cat'].replace(to_replace='Tidak',  value=0, inplace=True)
-
-kategori = df[["tipe_hotel","meal","negara","market_segment","tipe_ruang","tipe_kamar_ditentukan","tipe_deposit","tipe_customer"]]
-
-- **Encdoding kategori yang sudah ditentuakn dengan labelencoder**
-
-encoded_data = LabelEncoder()
-for feature in kategori:
-        if feature in df.columns.values:
-            df[feature+"_cat"] = encoded_data.fit_transform(df[feature])
-
-- **Rubah tipe data dengan format yang sesua (Average Daily Rate)**
-
-df['adr'] = df['adr'].str.replace(',','')
-
-df['adr'] = df['adr'].astype(int)
-
-- **ID company sebaiknya tidak object**
-
-df['company'] = df['company'].astype(float)
-
-- **Lakukan konversi nama bulan kedalam numeric**
-
-df['bulan_kedatangan_cat'] = df['bulan_kedatangan']
-
-df['bulan_kedatangan_cat'].replace(to_replace='January', value=1, inplace=True)
-
-df['bulan_kedatangan_cat'].replace(to_replace='February', value=2, inplace=True)
-
-df['bulan_kedatangan_cat'].replace(to_replace='March', value=3, inplace=True)
-
-df['bulan_kedatangan_cat'].replace(to_replace='April', value=4, inplace=True)
-
-df['bulan_kedatangan_cat'].replace(to_replace='May', value=5, inplace=True)
-
-df['bulan_kedatangan_cat'].replace(to_replace='June', value=6, inplace=True)
-
-df['bulan_kedatangan_cat'].replace(to_replace='July', value=7, inplace=True)
-
-df['bulan_kedatangan_cat'].replace(to_replace='August', value=8, inplace=True)
-
-df['bulan_kedatangan_cat'].replace(to_replace='September', value=9, inplace=True)
-
-df['bulan_kedatangan_cat'].replace(to_replace='October', value=10, inplace=True)
-
-df['bulan_kedatangan_cat'].replace(to_replace='November', value=11, inplace=True)
-
-df['bulan_kedatangan_cat'].replace(to_replace='December', value=12, inplace=True)
-
-- **Kemudian cek korelasi untuk menentukan fiture yang akan digunakan**
-
-sns.heatmap(df.corr(),linewidth=.5,annot=True,cmap="RdYlGn")
-fig = plt.gcf()
-fig.set_size_inches(15,8)
-plt.show()
-
-
-- **Cek Urutan korelasi terendah ke tertinggi**
-korelasi = df.corr()["pembatalan_cat"].sort_values()
-korelasi
-
+- Dari hasil checking ditemukan ada data yang null, sehingga dilakukan Handling Null Value
+- Dilakukan dropna pada kolom anak2, 
+- Pada company diisi 0 jika customer tidak memiliki company, bisa jadi customer melakukan pembelian mandiri sehingga tidak perlu dilakukan drop missing value
+- Pada kolom negara dilakukan handling missing value degangan cara dropna, karena asumsi setiap customer pasti berasal dari sebuah negara atau memiliki negara asal, jika tidak ada negaranya maka tidak bisa dilakukan profiling customer
+- Pada column pembatalan di Convert di convert ke numeric agar bisa diproses dalam model mechine learning
+- Pada kolom yang lain dilakukan proses Encdoding kategori yang sudah ditentuakn dengan labelencoder**
+- Rubah tipe data dengan format yang sesuai untuk (Average Daily Rate), karena tipe data yang ada masih object
+- ID company sebaiknya tidak object sehingga dalam hal ini perlu dilakukan perubahan tipe data
+- konversi nama bulan kedalam numeric dari bulan 1 sampai 12
+- Kemudian cek korelasi untuk menentukan fiture yang akan digunakan
 
 ![image](https://user-images.githubusercontent.com/84785795/188298118-ab84e5f2-b1f8-43c1-91e6-e5a0ed6fa16a.png)
 
@@ -177,9 +101,7 @@ waktu_tunggu 0.293123
 tipe_deposit 0.468634
 pembatalan 1.000000
 
--**Kita lihat secara spesifik matrix korelasi dari variabel2 tersebut**
-
-cekspesifikmatrix = df[["pembatalan_cat","anak_anak","minggu_kedatangan","tahun_kedatangan","menginap_in_week_nights","days_in_waiting_list","market_segment_cat","dewasa","pembatalan_sebelumnya","negara_cat","waktu_tunggu","tipe_deposit_cat"]]
+-** Jika Kita lihat secara spesifik matrix korelasi dari variabel2 tersebut adalah sebagi berikut**
 
 ![image](https://user-images.githubusercontent.com/84785795/188298224-e71661a7-6869-4e67-92d0-8586ad30dea6.png)
 

@@ -19,7 +19,7 @@ Client membutuhkan sebuah alat machine learning untuk perusahaan bisnis property
 -  Membuat Mechine learning untuk memprediksi kemungkinan customer melakukan pembatalan atau tidak
 
 ## Data Understanding
-Dataset ini berisi data pemesanan sebuah hotel di daerah kota dan sebuah hotel di daerah resor; data yang dikoleksi seperti kapan pemesanan dilakukan, lama tinggal tamu di hotel, banyak tamu dewasa, banyak tamu anak-anak, banyak tamu bayi, jumlah ruang parkir tersedia, dan 25 fitur lainnya. Dataset ini berasal dari sebuah artikel yang diterbitkan oleh ScienceDirect. https://rpubs.com/gustavothiodorus/visualisasi_pemesanan_kamar_hotel
+Dataset ini berisi data pemesanan sebuah hotel di daerah kota dan sebuah hotel di daerah resor; data yang dikoleksi seperti kapan pemesanan dilakukan, lama tinggal tamu di hotel, banyak tamu dewasa, banyak tamu anak-anak, banyak tamu bayi, jumlah ruang parkir tersedia, dan 25 fitur lainnya. Dataset ini berasal dari sebuah artikel yang diterbitkan oleh ScienceDirect (https://www.sciencedirect.com/science/article/pii/S2352340918315191). Dan dataset di dapat dari kagle https://www.kaggle.com/datasets/jessemostipak/hotel-booking-demand
 
 - variabel dalam dataset ini adalah:
 - hotel: Hotel (H1 = Resort Hotel or H2 = City Hotel)

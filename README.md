@@ -1,6 +1,6 @@
 # Laporan Proyek Machine Learning - Muhamad Ali
 
-# Project Overview
+# Domain Proyek
 <hr>
 Projek ini dibuat untuk menampilkan hasil analisis berupa informasi yang dapat digunakan oleh perusahaan untuk mengetahui faktor-faktor penyebab pembatalan pemesanan kamar hotel sehingga perusahaan dapat mengantisipasi tindak pembatalan pemesanan kamar hotel dan dapat memperoleh keuntungan. 
 

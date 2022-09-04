@@ -75,26 +75,32 @@ Sebelum membuat modeling dilakukan data preparation sebagai berikut
 
 ### Handling Null Value
  - Cek apakah data mengandung null value
+
 df.isnull().sum()
  
 - Dilakukan dropna pada kolom anak2
+
 df.dropna(subset=['anak_anak'],inplace=True)
 
 - Pada company diisi 0 jika customer tidak memiliki company, bisa jadi customer melakukan pembelian mandiri
+
 df["company"].fillna("0",inplace=True)
 
 - Dilakukan Dropna juga pada colom negara
+
 df.dropna(subset=['negara'],inplace=True)
 
 ### Change Data Kategori dan Cek Korelasi Data
 - Ubah kedalam bentuk numerik
 - Convertin the predictor variable in a binary numeric variable
+
 df['pembatalan_cat'] = df['pembatalan']
 df['pembatalan_cat'].replace(to_replace='Ya', value=1, inplace=True)
 df['pembatalan_cat'].replace(to_replace='Tidak',  value=0, inplace=True)
 kategori = df[["tipe_hotel","meal","negara","market_segment","tipe_ruang","tipe_kamar_ditentukan","tipe_deposit","tipe_customer"]]
 
 - **Encdoding kategori yang sudah ditentuakn dengan labelencoder**
+
 encoded_data = LabelEncoder()
 for feature in kategori:
         if feature in df.columns.values:
@@ -105,9 +111,11 @@ df['adr'] = df['adr'].str.replace(',','')
 df['adr'] = df['adr'].astype(int)
 
 - **ID company sebaiknya tidak object**
+
 df['company'] = df['company'].astype(float)
 
 - **Lakukan konversi nama bulan kedalam numeric**
+-
 df['bulan_kedatangan_cat'] = df['bulan_kedatangan']
 df['bulan_kedatangan_cat'].replace(to_replace='January', value=1, inplace=True)
 df['bulan_kedatangan_cat'].replace(to_replace='February', value=2, inplace=True)
@@ -152,6 +160,7 @@ tipe_deposit 0.468634
 pembatalan 1.000000
 
 -** Kita lihat secara spesifik matrix korelasi dari variabel2 tersebut**
+
 cekspesifikmatrix = df[["pembatalan_cat","anak_anak","minggu_kedatangan","tahun_kedatangan","menginap_in_week_nights","days_in_waiting_list","market_segment_cat","dewasa","pembatalan_sebelumnya","negara_cat","waktu_tunggu","tipe_deposit_cat"]]
 
 ![image](https://user-images.githubusercontent.com/84785795/188298224-e71661a7-6869-4e67-92d0-8586ad30dea6.png)
@@ -194,20 +203,32 @@ Recall msekitar 39% dg presisi 91% dan akurasi 76%,
 
 Dari test AUC dapat dilihat ada di angka 0.76 ini menunjukan model kita cukup baik, namun kita akan coba denga Tunning Model untuk mendapatkan akurasi yang maksimal
 
+- Dari hasil tunning dengan Gridsearch didapatkan Best parameters: {'C': 100, 'class_weight': None} Best cross-validation score: 0.76 dengan menerapkan scroring didapat atrix sebagai berikut
 
+Accuracy scores:  [0.7592305697215858]
+f1 scores:  [0.5480983385244317]
+Precision scores:  [0.9044722486725687]
+Recall scores:  [0.39318935988748505]
 
+Akurasi model berada di sekitar 75%
 
-
-
-Feature yang ditambahkan adalah :
- "pembatalan","tipe_deposit","waktu_tunggu","negara","pembatalan_sebelumnya","days_in_waiting_list","minggu_kedatangan", "company","tamu_berulang","tipe_hotel" 
-
+- Mencoba Menerapkan Stratified k-fold cross validation dan didapatkan akurasi maximala di angka 76%
 
 
 ## Evaluation
-Matrix evaluasi menggunakan pengukuran clasification report dan didapatkan akurasi model sekitar 76 persen dengan presisi 88 dan recal 40, sehingga asumsi model tersebut cukup baik digunakan sebagai model prediksi
+Matrix evaluasi menggunakan pengukuran clasification report dan didapatkan akurasi model sekitar 76 persen dengan presisi 88 dan recal 40, sehingga asumsi model tersebut cukup baik digunakan sebagai model prediksi, evaluasi juga dilakuakan dengan membadingkan akurasi dari model lain namun didapatkan akurasi terbaik menggunakan logisti resgression meskipun secara angka hampir sama
 
-print(metrics.classification_report(y_test, y_pred))
+![image](https://user-images.githubusercontent.com/84785795/188298678-780f51c1-f55a-4f0b-9231-7691ac8bf257.png)
+
+![image](https://user-images.githubusercontent.com/84785795/188298732-b4143eab-b0d9-47d7-81aa-b255bf3ed152.png)
+
+Tidak Terjadi peningkatan score ketika dilakukan tuning parameter, artinya dengan feature yang ada didapat score maksimal 76% apabila kita menggunakan logistik regresion. Kita akan menambahkan feature lain yaitu company dengan pertimbangan akan mempengaruhi karena bisa jadi customer ada yang memesan melalui biro jasa ataupun pesan langsung tanpa biro jasa, wich is proses cancel order akan lebih mudah dilakukan apabila customer melakukan pesanan secara langsung. Kita juga akan menambahkan feature tamu berulang, feature ini penting mengingat bisa jadi angka cancel order untuk tamu berulang/yang sudah langganan sangat kecil kemungkinan mereka melakukan batal pesanan. Feature lain yang akan ditambahkan yaitu market_segment,tipe_hotel,tipe_customer,tipe_ruang dan tipe_kamar_ditentukan karena di EDA sendiri cenderung mempengaruhi status order customer
+
+Setelah penambahan fiture ternyata akurasinya hampir sama, namun secara bisnis feature2 baru tersebut dibutuhkan. oleh sebab itu kita akan tetap menggunakan modeling kedua dengan beberapa tambahan feature untuk memprediksi data karena secara akurasi tidak terlalu jauh, dimana pada model pertama yaitu :
+
+Accuracy of logistic regression classifier train data: 0.761 Accuracy of logistic regression classifier test data: 0.758
+
+perbedaanya hanya beda satu angka diblakang koma, kita ambil kesimpulan secara akurasi dan best accuration model logistik ini memang berada di kiradan 76 persen
 
   
  

@@ -88,18 +88,18 @@ Sebelum membuat modeling dilakukan data preparation sebagai berikut,
 
 - **Berdasarkan matrix didapat beberapa variabel yang memiliki korelasi besar yaitu :**
 
-anak_anak 0.005048
-minggu_kedatangan 0.008148
-tahun_kedatangan 0.016660
-menginap_in_week_nights 0.024765
-days_in_waiting_list 0.054186
-market_segment 0.059338
-dewasa 0.060017
-pembatalan_sebelumnya 0.110133
-negara 0.264223
-waktu_tunggu 0.293123
-tipe_deposit 0.468634
-pembatalan 1.000000
+- anak_anak 0.005048
+- minggu_kedatangan 0.008148
+- tahun_kedatangan 0.016660
+- menginap_in_week_nights 0.024765
+- days_in_waiting_list 0.054186
+- market_segment 0.059338
+- dewasa 0.060017
+- pembatalan_sebelumnya 0.110133
+- negara 0.264223
+- waktu_tunggu 0.293123
+- tipe_deposit 0.468634
+- pembatalan 1.000000
 
 -** Jika Kita lihat secara spesifik matrix korelasi dari variabel2 tersebut adalah sebagi berikut**
 
@@ -108,40 +108,17 @@ pembatalan 1.000000
 
 
 ## Modeling
-Pada tahap modeling dipilih dilipih beberapa fiture yang dirasa memiliki korelaso baik/positive untuk dijadikan variabel input
-features = df[["pembatalan_cat","tipe_deposit_cat","waktu_tunggu","negara_cat","pembatalan_sebelumnya","days_in_waiting_list","minggu_kedatangan"]]
 
-- **Dilakukan scaling data **
+Pada tahap modeling dipilih dilipih beberapa fiture yang dirasa memiliki korelasi baik/positive untuk dijadikan variabel input yaitu :
 
-scaler = MinMaxScaler()
-scaled = scaler.fit_transform(features)
-data_scaled = pd.DataFrame(scaled,columns=['pembatalan_cat','tipe_deposit_cat','waktu_tunggu','negara_cat','pembatalan_sebelumnya','days_in_waiting_list','minggu_kedatangan'])
-data_scaled
+"pembatalan_cat","tipe_deposit_cat","waktu_tunggu","negara_cat","pembatalan_sebelumnya","days_in_waiting_list","minggu_kedatangan"
 
-- **Membagi data train dan test sebanyak 20 dan 80 persen**
+- Feture yang dipilih dilakukan scaling data menggunakan MinMaxScaler pada variabel input agar range data tidak terlalu berbeda dan melebar
+- Data dibagi data train dan test sebanyak 20 dan 80 persen
+- Model yang dipilih yaitu Logistic Regression dengan pertimbangan memiliki akurasi yang lebih baik dari hasil uji coba dengan model lainya
 
-X = data_scaled.drop('pembatalan_cat', axis=1)
+Dari hasil model tersebut mendapatkan akurasi sebesar 75%
 
-y = data_scaled['pembatalan_cat']
-
-X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.2, random_state=0)
-
-- **Memilih Model Logistic Regresion**
-
-LR = LogisticRegression()
-LR.fit(X_train, y_train)
-
-y_pred = LR.predict(X_test)
-
-logreg_test = pd.merge(X_test, y_test, left_index=True, right_index=True, how='outer')
-
-logreg_test['prediction'] = y_pred
-
-logreg_test
-
-
-
-Dari hasil model tersebut mendapatkab akurasi sebesar 75%
 ![image](https://user-images.githubusercontent.com/84785795/188298377-e0280e22-8d73-4839-8b50-80de02402259.png)
 
 ![image](https://user-images.githubusercontent.com/84785795/188298396-03726e8c-777e-409a-96c0-d8608bb42254.png)

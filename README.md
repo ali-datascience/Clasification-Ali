@@ -95,8 +95,11 @@ df.dropna(subset=['negara'],inplace=True)
 - Convertin the predictor variable in a binary numeric variable
 
 df['pembatalan_cat'] = df['pembatalan']
+
 df['pembatalan_cat'].replace(to_replace='Ya', value=1, inplace=True)
+
 df['pembatalan_cat'].replace(to_replace='Tidak',  value=0, inplace=True)
+
 kategori = df[["tipe_hotel","meal","negara","market_segment","tipe_ruang","tipe_kamar_ditentukan","tipe_deposit","tipe_customer"]]
 
 - **Encdoding kategori yang sudah ditentuakn dengan labelencoder**
@@ -107,7 +110,9 @@ for feature in kategori:
             df[feature+"_cat"] = encoded_data.fit_transform(df[feature])
 
 - Rubah tipe data dengan format yang sesua (Average Daily Rate)
+- 
 df['adr'] = df['adr'].str.replace(',','')
+
 df['adr'] = df['adr'].astype(int)
 
 - **ID company sebaiknya tidak object**
@@ -117,17 +122,29 @@ df['company'] = df['company'].astype(float)
 - **Lakukan konversi nama bulan kedalam numeric**
 
 df['bulan_kedatangan_cat'] = df['bulan_kedatangan']
+
 df['bulan_kedatangan_cat'].replace(to_replace='January', value=1, inplace=True)
+
 df['bulan_kedatangan_cat'].replace(to_replace='February', value=2, inplace=True)
+
 df['bulan_kedatangan_cat'].replace(to_replace='March', value=3, inplace=True)
+
 df['bulan_kedatangan_cat'].replace(to_replace='April', value=4, inplace=True)
+
 df['bulan_kedatangan_cat'].replace(to_replace='May', value=5, inplace=True)
+
 df['bulan_kedatangan_cat'].replace(to_replace='June', value=6, inplace=True)
+
 df['bulan_kedatangan_cat'].replace(to_replace='July', value=7, inplace=True)
+
 df['bulan_kedatangan_cat'].replace(to_replace='August', value=8, inplace=True)
+
 df['bulan_kedatangan_cat'].replace(to_replace='September', value=9, inplace=True)
+
 df['bulan_kedatangan_cat'].replace(to_replace='October', value=10, inplace=True)
+
 df['bulan_kedatangan_cat'].replace(to_replace='November', value=11, inplace=True)
+
 df['bulan_kedatangan_cat'].replace(to_replace='December', value=12, inplace=True)
 
 - **Kemudian cek korelasi untuk menentukan fiture yang akan digunakan **
@@ -182,7 +199,9 @@ data_scaled
 - **Membagi data train dan test sebanyak 20 dan 80 persen**
 
 X = data_scaled.drop('pembatalan_cat', axis=1)
+
 y = data_scaled['pembatalan_cat']
+
 X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.2, random_state=0)
 
 - **Memilih Model Logistic Regresion**
@@ -191,9 +210,13 @@ LR = LogisticRegression()
 LR.fit(X_train, y_train)
 
 y_pred = LR.predict(X_test)
+
 logreg_test = pd.merge(X_test, y_test, left_index=True, right_index=True, how='outer')
+
 logreg_test['prediction'] = y_pred
+
 logreg_test
+
 
 
 Dari hasil model tersebut mendapatkab akurasi sebesar 75%
@@ -240,5 +263,23 @@ perbedaanya hanya beda satu angka diblakang koma, kita ambil kesimpulan secara a
   
  
 ## KESIMPULAN/SARAN
+
+-  Mengerahui profiling dari customer berdasarakan tipe hotel (City dan resort hotel)
+-  Mengetahui karakteristik dari customer yang melakukan pembatalan
+-  Membuat Mechine learning untuk memprediksi kemungkinan customer melakukan pembatalan atau tidak
+
+
+![image](https://user-images.githubusercontent.com/84785795/188299024-c3fa20fc-41da-4c1a-baf2-b743f7954d2d.png)
+
+
+Berdasarkan data diatas dapat dilihat 5 negara dengan customer terbanyak yaitu Portugal sebanyak 21071, disusul dengan 4 negara lain yaitu
+
+United Kingdom 9676
+France 8481
+Spain 6391
+Germany 6069
+dan Jumlah Negara Dengan Customer paling sedikit yaitu sebanyak 31 negara
+
+
 
 Perusahaan perlu membuat promosi untuk resort hotel karena presentasi order yang lumayan kecil jika dibandingkan dengan city hotel, kemudian matrix yang mempengaruhi angka pembatalan pemesanan juga perlu di reduse seperti misalkan mengharuskan untuk deposite terlebih dahulu untuk pemesanan hotel dan perlu melakukan mekanisme promosi pada negara-negara dengan angka order terkecil, mungkin bisa mengadayakan upaya promosi kerjasama dengan destinasi wisata setempat untuk melakukan upaya marketing campaign atau promosi lainya dengan target negara-negara tersebut. Bisa juga mengadakan sistem loyalti point/rewards ataupun referal bagi pengunjung setia hotel.

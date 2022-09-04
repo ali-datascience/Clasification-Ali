@@ -94,7 +94,7 @@ df['pembatalan_cat'].replace(to_replace='Ya', value=1, inplace=True)
 df['pembatalan_cat'].replace(to_replace='Tidak',  value=0, inplace=True)
 kategori = df[["tipe_hotel","meal","negara","market_segment","tipe_ruang","tipe_kamar_ditentukan","tipe_deposit","tipe_customer"]]
 
-- Encdoding kategori yang sudah ditentuakn dengan labelencoder
+- **Encdoding kategori yang sudah ditentuakn dengan labelencoder**
 encoded_data = LabelEncoder()
 for feature in kategori:
         if feature in df.columns.values:
@@ -104,10 +104,10 @@ for feature in kategori:
 df['adr'] = df['adr'].str.replace(',','')
 df['adr'] = df['adr'].astype(int)
 
-- ID company sebaiknya tidak object
+- **ID company sebaiknya tidak object**
 df['company'] = df['company'].astype(float)
 
-- Lakukan konversi nama bulan kedalam numeric
+- **Lakukan konversi nama bulan kedalam numeric**
 df['bulan_kedatangan_cat'] = df['bulan_kedatangan']
 df['bulan_kedatangan_cat'].replace(to_replace='January', value=1, inplace=True)
 df['bulan_kedatangan_cat'].replace(to_replace='February', value=2, inplace=True)
@@ -122,7 +122,7 @@ df['bulan_kedatangan_cat'].replace(to_replace='October', value=10, inplace=True)
 df['bulan_kedatangan_cat'].replace(to_replace='November', value=11, inplace=True)
 df['bulan_kedatangan_cat'].replace(to_replace='December', value=12, inplace=True)
 
-- Kemudian cek korelasi untuk menentukan fiture yang akan digunakan 
+- **Kemudian cek korelasi untuk menentukan fiture yang akan digunakan **
 sns.heatmap(df.corr(),linewidth=.5,annot=True,cmap="RdYlGn")
 fig = plt.gcf()
 fig.set_size_inches(15,8)
@@ -136,7 +136,7 @@ korelasi
 
 ![image](https://user-images.githubusercontent.com/84785795/188298118-ab84e5f2-b1f8-43c1-91e6-e5a0ed6fa16a.png)
 
-Berdasarkan matrix didapat beberapa variabel yang memiliki korelasi besar yaitu :
+- **Berdasarkan matrix didapat beberapa variabel yang memiliki korelasi besar yaitu :**
 
 anak_anak 0.005048
 minggu_kedatangan 0.008148
@@ -151,18 +151,29 @@ waktu_tunggu 0.293123
 tipe_deposit 0.468634
 pembatalan 1.000000
 
-- Kita lihat secara spesifik matrix korelasi dari variabel2 tersebut
+-** Kita lihat secara spesifik matrix korelasi dari variabel2 tersebut**
 cekspesifikmatrix = df[["pembatalan_cat","anak_anak","minggu_kedatangan","tahun_kedatangan","menginap_in_week_nights","days_in_waiting_list","market_segment_cat","dewasa","pembatalan_sebelumnya","negara_cat","waktu_tunggu","tipe_deposit_cat"]]
 
-
-![Uploading image.png…]()
-
+![image](https://user-images.githubusercontent.com/84785795/188298224-e71661a7-6869-4e67-92d0-8586ad30dea6.png)
 
 
 
 ## Modeling
-Menggunakan Logistic Regression Dg Akurasi sekitar 76%. Perbindingan dengan model lain namun akurasi maximal berada di angka yang sama
-Sudah dilakukan Tunning namun akurasi tidak terlalu signifikan
+Pada tahap modeling dipilih dilipih beberapa fiture yang dirasa memiliki korelaso baik/positive untuk dijadikan variabel input
+features = df[["pembatalan_cat","tipe_deposit_cat","waktu_tunggu","negara_cat","pembatalan_sebelumnya","days_in_waiting_list","minggu_kedatangan"]]
+
+- **Dilakukan scaling data **
+scaler = MinMaxScaler()
+scaled = scaler.fit_transform(features)
+data_scaled = pd.DataFrame(scaled,columns=['pembatalan_cat','tipe_deposit_cat','waktu_tunggu','negara_cat','pembatalan_sebelumnya','days_in_waiting_list','minggu_kedatangan'])
+data_scaled
+
+- **Membagi data train dan test sebanyak 20 dan 80 persen**
+X = data_scaled.drop('pembatalan_cat', axis=1)
+y = data_scaled['pembatalan_cat']
+X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.2, random_state=0)
+
+- Memilih Model Logistic Regresion
 
 LR = LogisticRegression()
 LR.fit(X_train, y_train)
@@ -173,11 +184,23 @@ logreg_test['prediction'] = y_pred
 logreg_test
 
 
+Dari hasil model tersebut mendapatkab akurasi sebesar 75%
+![image](https://user-images.githubusercontent.com/84785795/188298377-e0280e22-8d73-4839-8b50-80de02402259.png)
+
+![image](https://user-images.githubusercontent.com/84785795/188298396-03726e8c-777e-409a-96c0-d8608bb42254.png)
+
+Recall msekitar 39% dg presisi 91% dan akurasi 76%, 
+![image](https://user-images.githubusercontent.com/84785795/188298416-6b2ac635-2108-4aff-8039-4aea19ac7d45.png
+
+Dari test AUC dapat dilihat ada di angka 0.76 ini menunjukan model kita cukup baik, namun kita akan coba denga Tunning Model untuk mendapatkan akurasi yang maksimal
+
+
+
+
 
 
 Feature yang ditambahkan adalah :
  "pembatalan","tipe_deposit","waktu_tunggu","negara","pembatalan_sebelumnya","days_in_waiting_list","minggu_kedatangan", "company","tamu_berulang","tipe_hotel" 
-![image](https://user-images.githubusercontent.com/84785795/188253778-0869a0a8-9c55-4f18-834b-2603d1ed6ecc.png)
 
 
 

@@ -268,21 +268,47 @@ perbedaanya hanya beda satu angka diblakang koma, kita ambil kesimpulan secara a
 
 ![image](https://user-images.githubusercontent.com/84785795/188299209-836a6cdd-3c51-426a-8e3f-2ff66da8628e.png)
 
-cspembatalan = df[df["pembatalan"]=="Ya"]
-cspembatalan
-
--  Mengetahui karakteristik dari customer yang melakukan pembatalan
 
 
+**Karakteristik dari customer yang melakukan pembatalan sebelumnya**
 
-![image](https://user-images.githubusercontent.com/84785795/188299254-7a76bd36-2b76-4c76-9a70-887d810d9acf.png)
+![image](https://user-images.githubusercontent.com/84785795/188299385-67835d7e-4d46-4bae-b316-c28db71ff309.png)
+
+![image](https://user-images.githubusercontent.com/84785795/188299395-0fde451a-4617-4f72-976e-8bdb92eea483.png)
+
+![image](https://user-images.githubusercontent.com/84785795/188299404-f22242c5-b103-425f-a287-04f8e04b9003.png)
+
+![image](https://user-images.githubusercontent.com/84785795/188299408-585aa52e-ab02-4bc7-af83-348c3071df19.png)
+
+![image](https://user-images.githubusercontent.com/84785795/188299416-4bcd25ae-e5fd-4db5-97b2-d8835e6f5f4b.png)
+
+![image](https://user-images.githubusercontent.com/84785795/188299422-dc37e6f7-f5bf-4e26-bfa9-5d0f608405bd.png)
+
+![image](https://user-images.githubusercontent.com/84785795/188299426-468cab23-814f-4363-b5ce-4eca1ccad408.png)
+
+![image](https://user-images.githubusercontent.com/84785795/188299433-4fc320ce-aea2-4d2c-b90c-3697b3147026.png)
+
+![image](https://user-images.githubusercontent.com/84785795/188299436-6658d1cb-ede8-4060-95f1-d31fd445fd0d.png)
+
+![image](https://user-images.githubusercontent.com/84785795/188299450-ec342aa3-d824-4861-a00f-6316260b264f.png)
+
+![image](https://user-images.githubusercontent.com/84785795/188299453-e0b4564e-6888-4814-8834-35233956520f.png)
+
+![image](https://user-images.githubusercontent.com/84785795/188299457-657633b0-c4d3-45a4-acf0-8f8257ba5742.png)
 
 
--  Membuat Mechine learning untuk memprediksi kemungkinan customer melakukan pembatalan atau tidak
+
+- Ada sebenyak 6484 customer yang sudah pernah melakukan pembatalan sebelumnya
+- Jumlah pemesanan dengan 2 orang dewasa dan tidak memiliki anak-anak dan babies cenderung lebih banyak melakukan pembatalan sebelumnya.
+- Tipe meal dengan tipe "BB" juga cenderung banyak melakukan pembatalan.
+- Market segment paling banyak yang melakukan pembatalan sebelumnya yaitu dari Offile TA/TO dan Group.
+- Customer baru / bukan tamu berulang lebih banyak dalam melakukan pembatalan sebelumnya.
+- Untuk tipe ruang dan kamar yang ditentukan yang paling banyak melakukan pembatalan sebelumnya adalah tipe A.
+- Customer yang malakukan pembatalan sebelumnya lebih banyak dari customer yang tidak melakukan perubahan pemesanan
+- Jenis Deposit dengan pilihan tanpa deposito dan Non Refund lebih banyak dalam melakukan pematalan
+- Tipe customer transien dan tidak membutuhkan parkir paling banyak melakukan pembatalan
 
 
-
-
-
+**SARAN**
 
 Perusahaan perlu membuat promosi untuk resort hotel karena presentasi order yang lumayan kecil jika dibandingkan dengan city hotel, kemudian matrix yang mempengaruhi angka pembatalan pemesanan juga perlu di reduse seperti misalkan mengharuskan untuk deposite terlebih dahulu untuk pemesanan hotel dan perlu melakukan mekanisme promosi pada negara-negara dengan angka order terkecil, mungkin bisa mengadayakan upaya promosi kerjasama dengan destinasi wisata setempat untuk melakukan upaya marketing campaign atau promosi lainya dengan target negara-negara tersebut. Bisa juga mengadakan sistem loyalti point/rewards ataupun referal bagi pengunjung setia hotel.

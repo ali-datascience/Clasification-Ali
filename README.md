@@ -70,10 +70,95 @@ Dataset ini berisi data pemesanan sebuah hotel di daerah kota dan sebuah hotel d
 - reservation_status_date: Date at which the last status was set. This variable can be used in conjunction with the ReservationStatus to understand when was the booking canceled or when did the customer checked-out of the hotel
 
 
-##Data Preparation
+## Data Preparation
 Sebelum membuat modeling dilakukan data preparation sebagai berikut
 
-###Handling Null Value
+### Handling Null Value
+ - Cek apakah data mengandung null value
+df.isnull().sum()
+ 
+- Dilakukan dropna pada kolom anak2
+df.dropna(subset=['anak_anak'],inplace=True)
+
+- Pada company diisi 0 jika customer tidak memiliki company, bisa jadi customer melakukan pembelian mandiri
+df["company"].fillna("0",inplace=True)
+
+- Dilakukan Dropna juga pada colom negara
+df.dropna(subset=['negara'],inplace=True)
+
+### Change Data Kategori dan Cek Korelasi Data
+- Ubah kedalam bentuk numerik
+- Convertin the predictor variable in a binary numeric variable
+df['pembatalan_cat'] = df['pembatalan']
+df['pembatalan_cat'].replace(to_replace='Ya', value=1, inplace=True)
+df['pembatalan_cat'].replace(to_replace='Tidak',  value=0, inplace=True)
+kategori = df[["tipe_hotel","meal","negara","market_segment","tipe_ruang","tipe_kamar_ditentukan","tipe_deposit","tipe_customer"]]
+
+- Encdoding kategori yang sudah ditentuakn dengan labelencoder
+encoded_data = LabelEncoder()
+for feature in kategori:
+        if feature in df.columns.values:
+            df[feature+"_cat"] = encoded_data.fit_transform(df[feature])
+
+- Rubah tipe data dengan format yang sesua (Average Daily Rate)
+df['adr'] = df['adr'].str.replace(',','')
+df['adr'] = df['adr'].astype(int)
+
+- ID company sebaiknya tidak object
+df['company'] = df['company'].astype(float)
+
+- Lakukan konversi nama bulan kedalam numeric
+df['bulan_kedatangan_cat'] = df['bulan_kedatangan']
+df['bulan_kedatangan_cat'].replace(to_replace='January', value=1, inplace=True)
+df['bulan_kedatangan_cat'].replace(to_replace='February', value=2, inplace=True)
+df['bulan_kedatangan_cat'].replace(to_replace='March', value=3, inplace=True)
+df['bulan_kedatangan_cat'].replace(to_replace='April', value=4, inplace=True)
+df['bulan_kedatangan_cat'].replace(to_replace='May', value=5, inplace=True)
+df['bulan_kedatangan_cat'].replace(to_replace='June', value=6, inplace=True)
+df['bulan_kedatangan_cat'].replace(to_replace='July', value=7, inplace=True)
+df['bulan_kedatangan_cat'].replace(to_replace='August', value=8, inplace=True)
+df['bulan_kedatangan_cat'].replace(to_replace='September', value=9, inplace=True)
+df['bulan_kedatangan_cat'].replace(to_replace='October', value=10, inplace=True)
+df['bulan_kedatangan_cat'].replace(to_replace='November', value=11, inplace=True)
+df['bulan_kedatangan_cat'].replace(to_replace='December', value=12, inplace=True)
+
+- Kemudian cek korelasi untuk menentukan fiture yang akan digunakan 
+sns.heatmap(df.corr(),linewidth=.5,annot=True,cmap="RdYlGn")
+fig = plt.gcf()
+fig.set_size_inches(15,8)
+plt.show()
+
+
+- Cek Urutan korelasi terendah ke tertinggi
+korelasi = df.corr()["pembatalan_cat"].sort_values()
+korelasi
+
+
+![image](https://user-images.githubusercontent.com/84785795/188298118-ab84e5f2-b1f8-43c1-91e6-e5a0ed6fa16a.png)
+
+Berdasarkan matrix didapat beberapa variabel yang memiliki korelasi besar yaitu :
+
+anak_anak 0.005048
+minggu_kedatangan 0.008148
+tahun_kedatangan 0.016660
+menginap_in_week_nights 0.024765
+days_in_waiting_list 0.054186
+market_segment 0.059338
+dewasa 0.060017
+pembatalan_sebelumnya 0.110133
+negara 0.264223
+waktu_tunggu 0.293123
+tipe_deposit 0.468634
+pembatalan 1.000000
+
+- Kita lihat secara spesifik matrix korelasi dari variabel2 tersebut
+cekspesifikmatrix = df[["pembatalan_cat","anak_anak","minggu_kedatangan","tahun_kedatangan","menginap_in_week_nights","days_in_waiting_list","market_segment_cat","dewasa","pembatalan_sebelumnya","negara_cat","waktu_tunggu","tipe_deposit_cat"]]
+
+
+![Uploading image.png…]()
+
+
+
 
 ## Modeling
 Menggunakan Logistic Regression Dg Akurasi sekitar 76%. Perbindingan dengan model lain namun akurasi maximal berada di angka yang sama
@@ -86,6 +171,8 @@ y_pred = LR.predict(X_test)
 logreg_test = pd.merge(X_test, y_test, left_index=True, right_index=True, how='outer')
 logreg_test['prediction'] = y_pred
 logreg_test
+
+
 
 
 Feature yang ditambahkan adalah :

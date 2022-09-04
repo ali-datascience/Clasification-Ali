@@ -109,8 +109,8 @@ for feature in kategori:
         if feature in df.columns.values:
             df[feature+"_cat"] = encoded_data.fit_transform(df[feature])
 
-- Rubah tipe data dengan format yang sesua (Average Daily Rate)
-- 
+- **Rubah tipe data dengan format yang sesua (Average Daily Rate)**
+
 df['adr'] = df['adr'].str.replace(',','')
 
 df['adr'] = df['adr'].astype(int)
@@ -147,7 +147,7 @@ df['bulan_kedatangan_cat'].replace(to_replace='November', value=11, inplace=True
 
 df['bulan_kedatangan_cat'].replace(to_replace='December', value=12, inplace=True)
 
-- **Kemudian cek korelasi untuk menentukan fiture yang akan digunakan **
+- **Kemudian cek korelasi untuk menentukan fiture yang akan digunakan**
 
 sns.heatmap(df.corr(),linewidth=.5,annot=True,cmap="RdYlGn")
 fig = plt.gcf()
@@ -155,7 +155,7 @@ fig.set_size_inches(15,8)
 plt.show()
 
 
-- Cek Urutan korelasi terendah ke tertinggi
+- **Cek Urutan korelasi terendah ke tertinggi**
 korelasi = df.corr()["pembatalan_cat"].sort_values()
 korelasi
 
@@ -177,7 +177,7 @@ waktu_tunggu 0.293123
 tipe_deposit 0.468634
 pembatalan 1.000000
 
--** Kita lihat secara spesifik matrix korelasi dari variabel2 tersebut**
+-**Kita lihat secara spesifik matrix korelasi dari variabel2 tersebut**
 
 cekspesifikmatrix = df[["pembatalan_cat","anak_anak","minggu_kedatangan","tahun_kedatangan","menginap_in_week_nights","days_in_waiting_list","market_segment_cat","dewasa","pembatalan_sebelumnya","negara_cat","waktu_tunggu","tipe_deposit_cat"]]
 

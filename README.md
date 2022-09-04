@@ -266,12 +266,6 @@ perbedaanya hanya beda satu angka diblakang koma, kita ambil kesimpulan secara a
 
 **profiling dari customer berdasarakan tipe hotel (City dan resort hotel)**
 
-
-![image](https://user-images.githubusercontent.com/84785795/188299209-836a6cdd-3c51-426a-8e3f-2ff66da8628e.png)
-
-![image](https://user-images.githubusercontent.com/84785795/188299531-9d18f486-83d0-444f-8fcc-d96111bb5850.png)
-
-
 Berdasarkan data  5 negara dengan customer terbanyak yaitu Portugal sebanyak 21071, disusul dengan 4 negara lain yaitu
 
 United Kingdom 9676
@@ -284,6 +278,14 @@ dan Jumlah Negara Dengan Customer paling sedikit yaitu sebanyak 31 negara
 
 *Dari pie chart dapat dilihat customer lebih banyak memesan City Hotel dibandingkan dengan Resort Hotel, dengan perbandungan 61.6 banding 38.5 persen *
 
+![image](https://user-images.githubusercontent.com/84785795/188299531-9d18f486-83d0-444f-8fcc-d96111bb5850.png)
+
+
+Kital lihat grafik pembatalan berdasarkan tipe hotel
+
+![image](https://user-images.githubusercontent.com/84785795/188299607-0f372a6a-7ab0-4aee-a0e0-a869e19bc336.png)
+
+City hotel memiliki jumlah pembatalan paling banyak sekitar 74.9%, berbanding lurus dengan jumlah pesanan terbanyak yaitu dari city hotel. Berarti dalam hal ini perusahaan perlu meningkatkan upaya promosi agar customer juga dapat tertarik pada tipe Resort Hotel mengingat angka presentasi pemesanan Resort Hotel yang kecil. selain itu juga perlu dicari tau mengapa customer banyak melakukan pembatalan pesanan pada city hotel
 
 **Karakteristik dari customer yang melakukan pembatalan sebelumnya**
 

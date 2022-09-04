@@ -148,8 +148,14 @@ Akurasi model berada di sekitar 75%
 ## Evaluation
 Matrix evaluasi menggunakan pengukuran clasification report dan didapatkan akurasi model sekitar 76 persen dengan presisi 88 dan recal 40, sehingga asumsi model tersebut cukup baik digunakan sebagai model prediksi, evaluasi juga dilakuakan dengan membadingkan akurasi dari model lain namun didapatkan akurasi terbaik menggunakan logisti resgression meskipun secara angka hampir sama
 
+| Model              | Akurasi Training | Akurasi Testing |
+|--------------------|------------------|-----------------|
+| k-Nearest Neighbor | 7.60             | 7.56            |
+| Decision tree      | 7.60             | 7.56            |
+| Random Fores       | 7.60             | 7.56            |
 
-![image](https://user-images.githubusercontent.com/84785795/188315607-1a5c1c25-c130-4bf1-8827-ca9cc43c80ce.png)
+
+![image](https://user-images.githubusercontent.com/84785795/188315933-6101a787-db7e-4051-aac6-99a2d8ece371.png)
 
 
 

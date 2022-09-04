@@ -264,21 +264,24 @@ perbedaanya hanya beda satu angka diblakang koma, kita ambil kesimpulan secara a
  
 ## KESIMPULAN/SARAN
 
--  Mengerahui profiling dari customer berdasarakan tipe hotel (City dan resort hotel)
+**profiling dari customer berdasarakan tipe hotel (City dan resort hotel)**
+
+![image](https://user-images.githubusercontent.com/84785795/188299209-836a6cdd-3c51-426a-8e3f-2ff66da8628e.png)
+
+cspembatalan = df[df["pembatalan"]=="Ya"]
+cspembatalan
+
 -  Mengetahui karakteristik dari customer yang melakukan pembatalan
+
+
+
+![image](https://user-images.githubusercontent.com/84785795/188299254-7a76bd36-2b76-4c76-9a70-887d810d9acf.png)
+
+
 -  Membuat Mechine learning untuk memprediksi kemungkinan customer melakukan pembatalan atau tidak
 
 
-![image](https://user-images.githubusercontent.com/84785795/188299024-c3fa20fc-41da-4c1a-baf2-b743f7954d2d.png)
 
-
-Berdasarkan data diatas dapat dilihat 5 negara dengan customer terbanyak yaitu Portugal sebanyak 21071, disusul dengan 4 negara lain yaitu
-
-United Kingdom 9676
-France 8481
-Spain 6391
-Germany 6069
-dan Jumlah Negara Dengan Customer paling sedikit yaitu sebanyak 31 negara
 
 
 

@@ -2,7 +2,7 @@
 
 # Project Overview
 <hr>
-Domain proyek yang dipilih dalam proyek machine learning ini adalah mengenai Case Clasification.
+Projek ini dibuat untuk menampilkan hasil analisis berupa informasi yang dapat digunakan oleh perusahaan untuk mengetahui faktor-faktor penyebab pembatalan pemesanan kamar hotel sehingga perusahaan dapat mengantisipasi tindak pembatalan pemesanan kamar hotel dan dapat memperoleh keuntungan. 
 
 # Business Understanding
 Client membutuhkan sebuah alat machine learning untuk perusahaan bisnis property dan booking hotel. Perusahaan hotel ingin mengoptimalkan customer yang melakukan pembatalan secara tiba-tiba, sehingga status website pemesanan online dapat diperbaiki dan mengetahui karakteristik pelanggan yang  melakukan pembatalan.

@@ -14,7 +14,7 @@ Client membutuhkan sebuah alat machine learning untuk perusahaan bisnis property
 
 ## Goals
 
--  Mengerahui profiling dari customer berdasarakan tipe hotel (City dan resort hotel)
+-  Mengetahui profiling dari customer berdasarakan tipe hotel (City dan resort hotel)
 -  Mengetahui karakteristik dari customer yang melakukan pembatalan
 -  Membuat Mechine learning untuk memprediksi kemungkinan customer melakukan pembatalan atau tidak
 

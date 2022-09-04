@@ -266,8 +266,23 @@ perbedaanya hanya beda satu angka diblakang koma, kita ambil kesimpulan secara a
 
 **profiling dari customer berdasarakan tipe hotel (City dan resort hotel)**
 
+
 ![image](https://user-images.githubusercontent.com/84785795/188299209-836a6cdd-3c51-426a-8e3f-2ff66da8628e.png)
 
+![image](https://user-images.githubusercontent.com/84785795/188299531-9d18f486-83d0-444f-8fcc-d96111bb5850.png)
+
+
+Berdasarkan data  5 negara dengan customer terbanyak yaitu Portugal sebanyak 21071, disusul dengan 4 negara lain yaitu
+
+United Kingdom 9676
+France 8481
+Spain 6391
+Germany 6069
+dan Jumlah Negara Dengan Customer paling sedikit yaitu sebanyak 31 negara
+
+![image](https://user-images.githubusercontent.com/84785795/188299550-53fde150-44b9-48b5-9953-e913eaa001f8.png)
+
+*Dari pie chart dapat dilihat customer lebih banyak memesan City Hotel dibandingkan dengan Resort Hotel, dengan perbandungan 61.6 banding 38.5 persen *
 
 
 **Karakteristik dari customer yang melakukan pembatalan sebelumnya**

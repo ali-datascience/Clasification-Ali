@@ -1,7 +1,3 @@
+Project Domain
 
-
-# Domain Proyek
-
-Projek ini dibuat untuk menampilkan hasil analisis berupa informasi yang dapat digunakan oleh perusahaan untuk mengetahui faktor-faktor penyebab pembatalan pemesanan kamar hotel sehingga perusahaan dapat mengantisipasi tindak pembatalan pemesanan kamar hotel dan dapat memperoleh keuntungan. 
-
-Detail lengkap mengenai projek ini dapat di baca di blog https://www.dibuild.id/2022/09/contoh-klasifikasi-mechine-learning.html
+This project is designed to present analysis results in the form of information that companies can use to identify the factors causing hotel room booking cancellations. This will allow the company to anticipate cancellations and thereby secure profits.
